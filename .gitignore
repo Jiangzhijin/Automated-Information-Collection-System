@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+.npm
+
+# Build outputs
+frontend/build/
+
+# Data files (keep structure but ignore content)
+backend/data/*.json
+backend/data/*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.sublime-project
+*.sublime-workspace
+
+# Test coverage
+htmlcov/
+.coverage
+.pytest_cache/
+
+# Temp files
+*.tmp
+*.temp
+*.bak

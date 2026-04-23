@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # 后端API服务
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: news-aggregator-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./backend/data:/app/backend/data
+    command: python backend/app/app.py
+    restart: unless-stopped
+
+  # 前端服务
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: news-aggregator-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+    restart: unless-stopped
+
+  # 定时任务服务
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: news-aggregator-scheduler
+    volumes:
+      - ./backend/data:/app/backend/data
+    command: python backend/app/scheduler.py
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+volumes:
+  news-data:
+    driver: local
